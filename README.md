@@ -12,10 +12,13 @@ import Router from "koa-router";
 
 const app = new Koa();
 const router = new Router();
-versioned({
-    app: app,
-    router: router,
-    supported_versions: ['v1', 'v2'],
-    current_version: '1.0.1'
+app.use(versioned(router, {
+    // Allows for optional overrides
+    supported_versions: ['v1', 'v2'],       // Defaults to all discovered version directories
+    current_version: '1.0.1'                // Defaults to version in `${process.cwd()}/package.json`
+    base_path: `${__dirname}/endpoints`,    // Defaults to `${process.cwd()}/endpoints`
+    // OR
+    glob: `${__dirname}/endpoints/*`,       // Define a blog used to locate version directories
+    glob_options: {}                        // Options passed to `glob`
 });
 ```
