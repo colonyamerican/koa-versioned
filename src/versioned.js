@@ -55,9 +55,9 @@ export default function versioned(
     });
   });
 
-  return (ctx, next) => {
-    router.routes()(ctx, () => {
-      router.allowedMethods()(ctx, next);
+  return async (ctx, next) => {
+    await router.routes()(ctx, async () => {
+      await router.allowedMethods()(ctx, next);
     });
   };
 }
