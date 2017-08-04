@@ -4,14 +4,20 @@
   "author": "Andrew Ewing <andrew.ewing@colonystarwood.com>",
   "repository": "https://github.com/colonyamerican/koa-versioned",
   "main": "lib/versioned.js",
-  "files": ["lib/versioned.js"],
+  "files": [
+    "lib/versioned.js"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "node_modules/.bin/babel --minified --no-comments src/versioned.js -o lib/versioned.js",
     "watch": "node_modules/.bin/babel --watch --minified --no-comments src/versioned.js -o lib/versioned.js"
   },
   "babel": {
-    "presets": ["es2015", "stage-0", "flow"]
+    "presets": [
+      "es2015",
+      "stage-0",
+      "flow"
+    ]
   },
   "devDependencies": {
     "flow-bin": "^0.52.0",
@@ -19,5 +25,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "glob": "^7.1.2",
+    "semver": "^5.4.1"
   }
 }
