@@ -18,7 +18,7 @@ app.use(versioned(router, {
     current_version: '1.0.1'                // Defaults to version in `${process.cwd()}/package.json`
     base_path: `${__dirname}/endpoints`,    // Defaults to `${process.cwd()}/endpoints`
     // OR
-    glob: `${__dirname}/endpoints/*`,       // Define a blog used to locate version directories
+    glob: `${__dirname}/endpoints/*`,       // Define a glob used to locate version directories
     glob_options: {}                        // Options passed to `glob`
 });
 ```
