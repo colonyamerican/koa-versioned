@@ -48,11 +48,14 @@ export default function versioned(
         if (!/.test.js/.test(file)) {
           console.log(`versioned \tRegistering endpoint: ${file}`);
           let routes = require(file).default;
+          let route_prefix = options.hasOwnProperty("route_prefix")
+            ? options.route_prefix
+            : "";
 
           if (semver.satisfies(current_version, v)) {
-            routes(router, apify);
+            routes(router, prefixify(`${route_prefix}`));
           } else {
-            routes(router, versionify(dirname));
+            routes(router, prefixify(`${route_prefix}/${v}`));
           }
         }
       });
@@ -69,15 +72,8 @@ export default function versioned(
 /**
  * Returns a function that prepares a versioned API endpoint path
  */
-export function versionify(prefix: string): string => string {
-  return path => {
-    return apify(`/${prefix}${path}`);
+export function prefixify(prefix: string): string {
+  return (path: string) => {
+    return `${prefix}${path}`;
   };
-}
-
-/**
- * Returns a function that prepares a non-versioned API endpoint path
- */
-export function apify(path: string): string {
-  return `/api${path}`;
 }
