@@ -1,6 +1,6 @@
 {
   "name": "koa-versioned",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Andrew Ewing <andrew.ewing@colonystarwood.com>",
   "repository": "https://github.com/colonyamerican/koa-versioned",
   "main": "lib/versioned.js",
