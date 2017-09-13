@@ -52,8 +52,11 @@ export default function versioned(
             ? options.route_prefix
             : "";
 
-          if (semver.satisfies(current_version, v)) {
-            routes(router, prefixify(`${route_prefix}`));
+          if ((current_version.substr(0, 1) == "0" && v == "v1") || semver.satisfies(current_version, v)) {
+            routes(
+              router,
+              multiPrefixify([`${route_prefix}`, `${route_prefix}/${v}`])
+            );
           } else {
             routes(router, prefixify(`${route_prefix}/${v}`));
           }
@@ -75,5 +78,18 @@ export default function versioned(
 export function prefixify(prefix: string): string {
   return (path: string) => {
     return `${prefix}${path}`;
+  };
+}
+
+/**
+ * Returns a function that prepares an array with multiple prefixed entries
+ */
+export function multiPrefixify(prefixes: array<string>): string {
+  return (path: string) => {
+    let result = [];
+    prefixes.forEach(prefix => {
+      result.push(`${prefix}${path}`);
+    });
+    return result;
   };
 }
