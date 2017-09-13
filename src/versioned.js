@@ -52,7 +52,7 @@ export default function versioned(
             ? options.route_prefix
             : "";
 
-          if (semver.satisfies(current_version, v)) {
+          if ((current_version.substr(0, 1) == "0" && v == "v1") || semver.satisfies(current_version, v)) {
             routes(
               router,
               multiPrefixify([`${route_prefix}`, `${route_prefix}/${v}`])
