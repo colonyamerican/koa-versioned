@@ -1,5 +1,6 @@
 {
-  "name": "koa-versioned",
+  "name": "@waypointhomes/koa-versioned",
+  "private": true,
   "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/colonyamerican/koa-versioned",
